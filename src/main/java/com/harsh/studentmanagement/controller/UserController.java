@@ -26,9 +26,6 @@ public class UserController {
 
 
     }
-    @GetMapping("/admin/data")
-    public String getAdminData(){
-        return "only admin can see it";
-    }
+
 
 }

@@ -30,4 +30,8 @@ public class UserService {
             return "Wrong Password";
         }
     }
+    public void delete(int id){
+        repo.deleteById(id);
+    }
+
 }
