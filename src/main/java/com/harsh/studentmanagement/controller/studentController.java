@@ -36,6 +36,13 @@ public class studentController {
         service.updateStudent(id,student);
         return "updated";
     }
+    @PatchMapping("/{id}")
+    public String patchStudent(@PathVariable int id, @RequestBody Map<String,Object>updates){
+
+        service.patchStudent(id,updates);
+
+        return "patched";
+    }
 
 
 

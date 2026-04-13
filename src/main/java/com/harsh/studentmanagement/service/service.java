@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class service {
@@ -32,9 +33,24 @@ public class service {
     }
 
 
-
-
-
-
+    public void patchStudent(int id, Map<String, Object> updates) {
+        Student exist=repo.findById(id).orElseThrow(()-> new RuntimeException("student not found"));
+        updates.forEach( (key,value) -> {
+            switch (key) {
+                case "name":
+                    exist.setName((String) value);
+                    break;
+                case "course":
+                    exist.setCourse((String) value);
+                    break;
+                case "id":
+                    exist.setId(Integer.parseInt((String) value));
+                    break;
+                default:
+                    throw new RuntimeException("field not found");
+            }
+            repo.save(exist);
+        });
+    }
 
 }
